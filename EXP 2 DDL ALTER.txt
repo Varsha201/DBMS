@@ -1,0 +1,63 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE SSE;
+Database changed
+mysql> CREATE TABLE STUDENT(ROLLNO INT, NAME VARCHAR(10), GENDER CHAR(1), DOB VARCHAR(10), MOBILENO INT, CITY VARCHAR(20), DISTRICT VARCHAR(20), DEPT VARCHAR(5));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESC STUDENT;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ROLLNO   | int(11)     | YES  |     | NULL    |       |
+| NAME     | varchar(10) | YES  |     | NULL    |       |
+| GENDER   | char(1)     | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| MOBILENO | int(11)     | YES  |     | NULL    |       |
+| CITY     | varchar(20) | YES  |     | NULL    |       |
+| DISTRICT | varchar(20) | YES  |     | NULL    |       |
+| DEPT     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.02 sec)
+
+mysql> CREATE TABLE STUDENTDEPARTMENT(DEPTID INT, DEPTNAME VARCHAR(20), ROLLNO INT);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM STUDENT;
+Empty set (0.00 sec)
+
+mysql> ALTER TABLE STUDENT ADD PRIMARY KEY(ROLLNO);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENT;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ROLLNO   | int(11)     | NO   | PRI | 0       |       |
+| NAME     | varchar(10) | YES  |     | NULL    |       |
+| GENDER   | char(1)     | YES  |     | NULL    |       |
+| DOB      | varchar(10) | YES  |     | NULL    |       |
+| MOBILENO | int(11)     | YES  |     | NULL    |       |
+| CITY     | varchar(20) | YES  |     | NULL    |       |
+| DISTRICT | varchar(20) | YES  |     | NULL    |       |
+| DEPT     | varchar(5)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+8 rows in set (0.02 sec)
+
+mysql> ALTER TABLE STUDENT ADD CHECK(AGE>=15);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
