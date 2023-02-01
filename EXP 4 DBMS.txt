@@ -1,0 +1,148 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| faculty            |
+| information_schema |
+| kirandb            |
+| mysql              |
+| performance_schema |
+| sse                |
+| student            |
+| sys                |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use sse;
+Database changed
+mysql> create table mentees(Regno int(10), Name varchar(20), Dept varchar(4), Adress varchar(10), Fathername varchar(10) );
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql> insert into mentees values(192211220,"Cherry","CSE","Porur","Ranga");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mentees values(192211201,"varshu","CIVIL","Egmore","Raju");
+ERROR 1406 (22001): Data too long for column 'Dept' at row 1
+mysql> insert into mentees values(192211201,"varshu","CSE","Egmore","Raju")
+    -> //;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '//' at line 2
+mysql> insert into mentees values(192211201,"varshu","CSE","Egmore","Raju");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(19221196,"indhu","CSE","MDP","Reddy Garu");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-----------+--------+------+--------+------------+
+| Regno     | Name   | Dept | Adress | Fathername |
++-----------+--------+------+--------+------------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |
+| 192211201 | varshu | CSE  | Egmore | Raju       |
+|  19221196 | indhu  | CSE  | MDP    | Reddy Garu |
++-----------+--------+------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select Name from mentees;
++--------+
+| Name   |
++--------+
+| Cherry |
+| varshu |
+| indhu  |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where Name="Cherry";
++-----------+--------+------+--------+------------+
+| Regno     | Name   | Dept | Adress | Fathername |
++-----------+--------+------+--------+------------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |
++-----------+--------+------+--------+------------+
+1 row in set (0.01 sec)
+
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| mentees       |
++---------------+
+1 row in set (0.01 sec)
+
+mysql> select*from mentees;
++-----------+--------+------+--------+------------+
+| Regno     | Name   | Dept | Adress | Fathername |
++-----------+--------+------+--------+------------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |
+| 192211201 | varshu | CSE  | Egmore | Raju       |
+|  19221196 | indhu  | CSE  | MDP    | Reddy Garu |
++-----------+--------+------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> update mentees set Dept="EEE" where Regno=192211201;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+--------+------+--------+------------+
+| Regno     | Name   | Dept | Adress | Fathername |
++-----------+--------+------+--------+------------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |
+| 192211201 | varshu | EEE  | Egmore | Raju       |
+|  19221196 | indhu  | CSE  | MDP    | Reddy Garu |
++-----------+--------+------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++-----------+--------+------+--------+------------+
+| Regno     | Name   | Dept | Adress | Fathername |
++-----------+--------+------+--------+------------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |
+| 192211201 | varshu | EEE  | Egmore | Raju       |
+|  19221196 | indhu  | CSE  | MDP    | Reddy Garu |
++-----------+--------+------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> update mentees set Adress="Chennai" where Fathername="Raju";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees
+    ->
+    -> //;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '//' at line 3
+mysql> select*from mentees;
++-----------+--------+------+---------+------------+
+| Regno     | Name   | Dept | Adress  | Fathername |
++-----------+--------+------+---------+------------+
+| 192211220 | Cherry | CSE  | Porur   | Ranga      |
+| 192211201 | varshu | EEE  | Chennai | Raju       |
+|  19221196 | indhu  | CSE  | MDP     | Reddy Garu |
++-----------+--------+------+---------+------------+
+3 rows in set (0.00 sec)
+
+mysql> delete from mentees where Fathername="Reddy Garu";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from mentees;
++-----------+--------+------+---------+------------+
+| Regno     | Name   | Dept | Adress  | Fathername |
++-----------+--------+------+---------+------------+
+| 192211220 | Cherry | CSE  | Porur   | Ranga      |
+| 192211201 | varshu | EEE  | Chennai | Raju       |
++-----------+--------+------+---------+------------+
+2 rows in set (0.00 sec)
