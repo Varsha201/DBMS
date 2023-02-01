@@ -1,0 +1,95 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 8.0.32 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| faculty            |
+| information_schema |
+| kirandb            |
+| mysql              |
+| performance_schema |
+| sse                |
+| student            |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use sse;
+Database changed
+mysql> select*from mentees;
++-----------+--------+------+---------+------------+
+| Regno     | Name   | Dept | Adress  | Fathername |
++-----------+--------+------+---------+------------+
+| 192211220 | Cherry | CSE  | Porur   | Ranga      |
+| 192211201 | varshu | EEE  | Chennai | Raju       |
++-----------+--------+------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where Dept="CSE";
++-----------+--------+------+--------+------------+
+| Regno     | Name   | Dept | Adress | Fathername |
++-----------+--------+------+--------+------------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |
++-----------+--------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where Name="Cherry";
++-----------+--------+------+--------+------------+
+| Regno     | Name   | Dept | Adress | Fathername |
++-----------+--------+------+--------+------------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |
++-----------+--------+------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> alter table mentees add Marks int(3);
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> update mentees set Marks=99 where Dept="CSE";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=91 where Dept="EEE";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=99.9 where Name="indhu";
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select*from mentees;
++-----------+--------+------+---------+------------+-------+
+| Regno     | Name   | Dept | Adress  | Fathername | Marks |
++-----------+--------+------+---------+------------+-------+
+| 192211220 | Cherry | CSE  | Porur   | Ranga      |    99 |
+| 192211201 | varshu | EEE  | Chennai | Raju       |    91 |
++-----------+--------+------+---------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where Dept like '%C%';
++-----------+--------+------+--------+------------+-------+
+| Regno     | Name   | Dept | Adress | Fathername | Marks |
++-----------+--------+------+--------+------------+-------+
+| 192211220 | Cherry | CSE  | Porur  | Ranga      |    99 |
++-----------+--------+------+--------+------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where Adress like '%C%';
++-----------+--------+------+---------+------------+-------+
+| Regno     | Name   | Dept | Adress  | Fathername | Marks |
++-----------+--------+------+---------+------------+-------+
+| 192211201 | varshu | EEE  | Chennai | Raju       |    91 |
++-----------+--------+------+---------+------------+-------+
+1 row in set (0.00 sec)
