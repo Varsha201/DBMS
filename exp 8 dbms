@@ -1,0 +1,56 @@
+mysql> use sse;
+Database changed
+mysql> select*from mentees2;
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| regno     | name     | dept | adress | fathername | subject | subjects | course | courses | Marks |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| 192211201 | varsha   | cse  | porur  | ranga      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211196 | indrashi | ECE  | RJDRY  | RAJU       | NULL    | NULL     | NULL   | chm     |    91 |
+| 192211220 | charan   | cse  | bcm    | veera      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192023037 | nithin   | agri | vij    | rama       | agri    | NULL     | NULL   | Agri    |   100 |
+| 192215221 | devi     | cse  | bpl    | sri        | DBMS    | NULL     | NULL   | DBMS    |    99 |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select regno, name from mentees2 where name in(select name from mentees2 where dept="CSE");
++-----------+--------+
+| regno     | name   |
++-----------+--------+
+| 192211201 | varsha |
+| 192211220 | charan |
+| 192215221 | devi   |
++-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> create table mentees4(id int(10), name varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into mentees4(id,name)
+    -> select regno,name
+    -> from mentees2 where dept="CSE";
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from mentees4; men
++-----------+--------+
+| id        | name   |
++-----------+--------+
+| 192211201 | varsha |
+| 192211220 | charan |
+| 192215221 | devi   |
++-----------+--------+
+3 rows in set (0.00 sec)
+
+    -> //;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'men
+//' at line 1
+mysql> select regno, (select name from mentees4 where id=192211220) as name,dept,adress,fathername,marks,subject from mentees2 where regno=192211220;
++-----------+--------+------+--------+------------+-------+---------+
+| regno     | name   | dept | adress | fathername | marks | subject |
++-----------+--------+------+--------+------------+-------+---------+
+| 192211220 | charan | cse  | bcm    | veera      |    99 | DBMS    |
++-----------+--------+------+--------+------------+-------+---------+
+1 row in set (0.01 sec)
+
+mysql>
+
