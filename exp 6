@@ -1,0 +1,85 @@
+mysql> alter table mentees2 add course varchar(20);
+ERROR 1060 (42S21): Duplicate column name 'course'
+mysql> alter table mentees2 add courses varchar(20);
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> update mentees2 set courses="DBMS" where Dept="CSE";
+Query OK, 3 rows affected (0.03 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> update mentees2 set courses="Agri" where Dept="agri";
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees2 set courses="chm" where Dept="ECE";
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> alter table mentees2 add Marks int(3);
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> update mentees2 set Marks=99 where Dept="CSE";
+Query OK, 3 rows affected (0.03 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> update mentees2 set Marks=91 where Dept="ECE";
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees2 set Marks=99.9 where Dept="agri";
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
+Empty set (0.00 sec)
+
+mysql> select*from mentees2;
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| regno     | name     | dept | adress | fathername | subject | subjects | course | courses | Marks |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| 192211201 | varsha   | cse  | porur  | ranga      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211196 | indrashi | ECE  | RJDRY  | RAJU       | NULL    | NULL     | NULL   | chm     |    91 |
+| 192211220 | charan   | cse  | bcm    | veera      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192023037 | nithin   | agri | vij    | rama       | agri    | NULL     | NULL   | Agri    |   100 |
+| 192215221 | devi     | cse  | bpl    | sri        | DBMS    | NULL     | NULL   | DBMS    |    99 |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select sum(Marks) from mentees2 where Dept="CSE";
++------------+
+| sum(Marks) |
++------------+
+|        297 |
++------------+
+1 row in set (0.03 sec)
+
+mysql> select avg(marks) as average from mentees;
+ERROR 1054 (42S22): Unknown column 'marks' in 'field list'
+mysql> select avg(marks) as average from mentees2;
++---------+
+| average |
++---------+
+| 97.6000 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) as minimum from mentees2;
++---------+
+| minimum |
++---------+
+|      91 |
++---------+
+1 row in set (0.03 sec)
+
+mysql> select max(marks) as maximum from mentees2;
++---------+
+| maximum |
++---------+
+|     100 |
++---------+
+1 row in set (0.00 sec)
+
+mysql>
+
