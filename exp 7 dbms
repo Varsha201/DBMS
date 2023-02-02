@@ -1,0 +1,66 @@
+mysql> use sse;
+Database changed
+mysql> select*from mentees2;
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| regno     | name     | dept | adress | fathername | subject | subjects | course | courses | Marks |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| 192211201 | varsha   | cse  | porur  | ranga      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211196 | indrashi | ECE  | RJDRY  | RAJU       | NULL    | NULL     | NULL   | chm     |    91 |
+| 192211220 | charan   | cse  | bcm    | veera      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192023037 | nithin   | agri | vij    | rama       | agri    | NULL     | NULL   | Agri    |   100 |
+| 192215221 | devi     | cse  | bpl    | sri        | DBMS    | NULL     | NULL   | DBMS    |    99 |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees2 order by name;
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| regno     | name     | dept | adress | fathername | subject | subjects | course | courses | Marks |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| 192211220 | charan   | cse  | bcm    | veera      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192215221 | devi     | cse  | bpl    | sri        | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211196 | indrashi | ECE  | RJDRY  | RAJU       | NULL    | NULL     | NULL   | chm     |    91 |
+| 192023037 | nithin   | agri | vij    | rama       | agri    | NULL     | NULL   | Agri    |   100 |
+| 192211201 | varsha   | cse  | porur  | ranga      | DBMS    | NULL     | NULL   | DBMS    |    99 |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> select*from mentees2 order by marks;
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| regno     | name     | dept | adress | fathername | subject | subjects | course | courses | Marks |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| 192211196 | indrashi | ECE  | RJDRY  | RAJU       | NULL    | NULL     | NULL   | chm     |    91 |
+| 192211201 | varsha   | cse  | porur  | ranga      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211220 | charan   | cse  | bcm    | veera      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192215221 | devi     | cse  | bpl    | sri        | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192023037 | nithin   | agri | vij    | rama       | agri    | NULL     | NULL   | Agri    |   100 |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees2 odrer by dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by dept' at line 1
+mysql> select*from mentees2 odrer by Dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by Dept' at line 1
+mysql> select*from mentees2 order by dept;
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| regno     | name     | dept | adress | fathername | subject | subjects | course | courses | Marks |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+| 192023037 | nithin   | agri | vij    | rama       | agri    | NULL     | NULL   | Agri    |   100 |
+| 192211201 | varsha   | cse  | porur  | ranga      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211220 | charan   | cse  | bcm    | veera      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192215221 | devi     | cse  | bpl    | sri        | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211196 | indrashi | ECE  | RJDRY  | RAJU       | NULL    | NULL     | NULL   | chm     |    91 |
++-----------+----------+------+--------+------------+---------+----------+--------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees2 having marks>95;
++-----------+--------+------+--------+------------+---------+----------+--------+---------+-------+
+| regno     | name   | dept | adress | fathername | subject | subjects | course | courses | Marks |
++-----------+--------+------+--------+------------+---------+----------+--------+---------+-------+
+| 192211201 | varsha | cse  | porur  | ranga      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192211220 | charan | cse  | bcm    | veera      | DBMS    | NULL     | NULL   | DBMS    |    99 |
+| 192023037 | nithin | agri | vij    | rama       | agri    | NULL     | NULL   | Agri    |   100 |
+| 192215221 | devi   | cse  | bpl    | sri        | DBMS    | NULL     | NULL   | DBMS    |    99 |
++-----------+--------+------+--------+------------+---------+----------+--------+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql>
